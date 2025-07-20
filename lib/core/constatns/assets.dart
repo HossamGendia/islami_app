@@ -21,4 +21,10 @@ abstract class Assets {
   static const String headerLogo = 'assets/images/Logo.png';
   static const String cardLogo = 'assets/images/rectangle_card.png';
   static const String suraNumberIcon = 'assets/icons/sura_number_icon.png';
+
+  static const String hadithCardBackGround = 'assets/images/HadithCardBackGround.png';
+
+
+  static const String rightCornerHadeth = 'assets/images/right_corner_hadeth.png';
+  static const String leftCornerHadeth = 'assets/images/left_corner_hadeth.png';
 }
