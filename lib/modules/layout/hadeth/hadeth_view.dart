@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_options.dart' show CarouselOptions;
+import 'package:carousel_slider/carousel_slider.dart' show CarouselSlider;
 import 'package:flutter/material.dart';
+import 'package:islami_app/modules/layout/hadeth/widgets/hadith_item_widget.dart';
 
 import '../../../core/constatns/assets.dart';
 
@@ -14,6 +17,28 @@ class HadethView extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+      child: Column(children: [Image.asset(Assets.headerLogo),
+        CarouselSlider(
+            items: [
+              HadithItemWidget(),
+            ],
+            options: CarouselOptions(
+              height: MediaQuery.of(context).size.height*0.6,
+              aspectRatio: 16/9,
+              viewportFraction: 0.8,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: false,
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              enlargeFactor: 0.3,
+              scrollDirection: Axis.horizontal,
+            )
+        )
+      ]),
+
     );
   }
 }
