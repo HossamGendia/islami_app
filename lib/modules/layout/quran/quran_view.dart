@@ -18,6 +18,7 @@ class QuranView extends StatefulWidget {
 }
 
 class _QuranViewState extends State<QuranView> {
+  String searchQuery = '';
   @override
   void initState() {
     // TODO: implement initState
@@ -44,6 +45,13 @@ class _QuranViewState extends State<QuranView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: TextFormField(
+                onChanged: (value) {
+                  searchQuery = value;
+                  search();
+                  setState(() {
+
+                  });
+                },
                 cursorColor: ColorsPallete.primaryColor,
                 decoration: InputDecoration(
                   hintText: "Sura Name",
@@ -66,13 +74,26 @@ class _QuranViewState extends State<QuranView> {
                 ),
               ),
             ),
-            recentSuraList.isNotEmpty
-                ? RecentlySuraWidget(suraDataModel: recentSuraList)
-                : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text('No Recent Sura'),
-                ),
-            SuraListWidget(onSuraTab: onSuraTap),
+
+            Visibility(
+              visible: searchQuery.isEmpty,
+              replacement:SuraListWidget(onSuraTab: onSuraTap,
+              suraDataModel: searchSuraList,
+              ),
+              child: Column(
+                children: [
+                  recentSuraList.isNotEmpty
+                      ? RecentlySuraWidget(suraDataModel: recentSuraList)
+                      : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text('No Recent Sura'),
+                      ),
+                  SuraListWidget(onSuraTab: onSuraTap,
+                  suraDataModel: Constants.suraDataLists,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -120,6 +141,18 @@ class _QuranViewState extends State<QuranView> {
     for (var index in recentSuraIndexList) {
       int indexInt = int.parse(index);
       recentSuraList.add(Constants.suraDataLists[indexInt]);
+    }
+  }
+
+  List<SuraDataModel> searchSuraList = [];
+
+  void search() {
+    searchSuraList = [];
+    for (var sura in Constants.suraDataLists) {
+      if (sura.suraNameEN.toLowerCase().contains(searchQuery.toLowerCase()) ||
+          sura.suraNameAR.toLowerCase().contains(searchQuery.toLowerCase())) {
+        searchSuraList.add(sura);
+      }
     }
   }
 }
