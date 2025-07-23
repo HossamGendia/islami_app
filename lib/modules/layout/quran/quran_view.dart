@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/core/constatns/colors_pallete.dart';
+import 'package:islami_app/core/constatns/constant.dart';
+import 'package:islami_app/core/services/local_storage_services.dart';
+import 'package:islami_app/modules/layout/quran/widgets/quran_details_view.dart';
 import 'package:islami_app/modules/layout/quran/widgets/recently_sura_widget.dart';
 import 'package:islami_app/modules/layout/quran/widgets/sura_list_widget.dart';
 
 import '../../../core/constatns/assets.dart';
+import '../../../core/services/local_storage_keys.dart';
+import '../../../models/sura_data_model.dart';
 
-class QuranView extends StatelessWidget {
-  const QuranView({super.key});
+class QuranView extends StatefulWidget {
+  QuranView({super.key});
+
+  @override
+  State<QuranView> createState() => _QuranViewState();
+}
+
+class _QuranViewState extends State<QuranView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    loadRecentData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +66,60 @@ class QuranView extends StatelessWidget {
                 ),
               ),
             ),
-            RecentlySuraWidget(),
-            SuraListWidget(),
+            recentSuraList.isNotEmpty
+                ? RecentlySuraWidget(suraDataModel: recentSuraList)
+                : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text('No Recent Sura'),
+                ),
+            SuraListWidget(onSuraTab: onSuraTap),
           ],
         ),
       ),
     );
+  }
+
+  List<String> recentSuraIndexList = [];
+
+  List<SuraDataModel> recentSuraList = [];
+
+  onSuraTap(int index) {
+    _cacheSuraIndex(index);
+    Navigator.pushNamed(
+      context,
+      QuranDetailsView.routName,
+      arguments: Constants.suraDataLists[index],
+    );
+  }
+
+  _cacheSuraIndex(int index) {
+    var indexstring = index.toString();
+    if (recentSuraIndexList.contains(indexstring)) {
+      return;
+    }
+
+    if (recentSuraIndexList.length == 5) {
+      recentSuraIndexList.removeLast();
+    }
+
+    recentSuraIndexList.insert(0, indexstring);
+    LocalStorageServices.setStringList(
+      LocalStorageKeys.recentSuras,
+      recentSuraIndexList,
+    );
+    loadRecentData();
+    setState(() {});
+  }
+
+  loadRecentData() {
+    recentSuraIndexList = [];
+    recentSuraList = [];
+    recentSuraIndexList =
+        LocalStorageServices.getStringList(LocalStorageKeys.recentSuras) ?? [];
+
+    for (var index in recentSuraIndexList) {
+      int indexInt = int.parse(index);
+      recentSuraList.add(Constants.suraDataLists[indexInt]);
+    }
   }
 }

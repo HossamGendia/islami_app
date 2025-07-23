@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/models/sura_data_model.dart';
+import 'package:islami_app/modules/layout/quran/widgets/quran_details_view.dart';
 import 'package:islami_app/modules/layout/quran/widgets/recently_item_widget.dart';
 
 class RecentlySuraWidget extends StatelessWidget {
-  const RecentlySuraWidget({super.key});
+  const RecentlySuraWidget({super.key, required this.suraDataModel});
+  final List<SuraDataModel> suraDataModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +26,20 @@ class RecentlySuraWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 20),
             itemBuilder: (BuildContext context, int index) {
-              return RecentlyItemWidget();
+              return GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, QuranDetailsView.routName, arguments: suraDataModel[index]);
+                },
+                child: RecentlyItemWidget(
+                  suraDataModel: suraDataModel[index],
+                ),
+              );
             },
 
             separatorBuilder: (context, index) {
               return SizedBox(width: 10);
             },
-            itemCount: 4,
+            itemCount: suraDataModel.length,
           ),
         ),
       ],

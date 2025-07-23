@@ -6,19 +6,14 @@ import '../../../../core/constatns/assets.dart';
 
 class SuraListItem extends StatelessWidget {
   final SuraDataModel suraDataModel;
+  final VoidCallback onSuraTab;
 
-  const SuraListItem({super.key, required this.suraDataModel});
+  const SuraListItem({super.key, required this.suraDataModel, required this.onSuraTab});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          QuranDetailsView.routName,
-          arguments: suraDataModel,
-        );
-      },
+      onTap:onSuraTab,
       child: Row(
         children: [
           Container(
