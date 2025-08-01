@@ -46,6 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsPallete.quranDetailsColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: _currentPage != _numPages - 1

@@ -5,6 +5,8 @@ import 'package:islami_app/modules/layout/layout_view.dart';
 import 'package:islami_app/modules/layout/quran/widgets/quran_details_view.dart';
 import 'package:islami_app/modules/splash/splash_view.dart';
 
+import 'modules/onboarding/onboarding.dart';
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorageServices.init();
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashView.routeName,
       routes: {
         SplashView.routeName: (context) => const SplashView(),
+        OnboardingScreen.routeName: (context) => const OnboardingScreen(),
         LayoutView.routeName: (context) => const LayoutView(),
         QuranDetailsView.routeName: (context) => QuranDetailsView(),
       },
