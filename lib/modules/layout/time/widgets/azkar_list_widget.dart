@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/core/constants/azkar_data_constraints.dart';
-import 'package:islami_app/core/constants/islami_colors.dart';
 import 'package:islami_app/core/constatns/colors_pallete.dart';
-
 import '../../../../core/constatns/azkar_data_constraints.dart';
 import '../../../../models/zikr_data_model.dart';
 
@@ -27,7 +24,6 @@ class AzkarListWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           color: Colors.black,
-          border: BoxBorder.all(
             color: ColorsPallete.primaryColor,
             width: 2,
           )
