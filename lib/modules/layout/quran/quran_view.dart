@@ -108,7 +108,7 @@ class _QuranViewState extends State<QuranView> {
     _cacheSuraIndex(index);
     Navigator.pushNamed(
       context,
-      QuranDetailsView.routName,
+      QuranDetailsView.routeName,
       arguments: Constants.suraDataLists[index],
     );
   }

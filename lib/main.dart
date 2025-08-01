@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashView.routeName,
       routes: {
         SplashView.routeName: (context) => const SplashView(),
-        LayoutView.routName: (context) => const LayoutView(),
-        QuranDetailsView.routName: (context) => QuranDetailsView(),
+        LayoutView.routeName: (context) => const LayoutView(),
+        QuranDetailsView.routeName: (context) => QuranDetailsView(),
       },
     );
   }

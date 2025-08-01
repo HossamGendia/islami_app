@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../core/constatns/assets.dart';
-import '../layout/layout_view.dart';
+import '../onboarding/onboarding.dart';
 
 class SplashView extends StatefulWidget {
   static const String routeName = '/splash';
@@ -16,7 +15,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, LayoutView.routName);
+      Navigator.pushReplacementNamed(context, OnboardingScreen.routeName);
     });
     super.initState();
   }

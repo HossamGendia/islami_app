@@ -1,3 +1,4 @@
 abstract class LocalStorageKeys{
   static const String recentSuras = 'recent-suras';
+  static const String onboardingSeenKey = "onboardingSeen";
 }

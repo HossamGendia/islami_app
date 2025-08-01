@@ -8,7 +8,7 @@ import 'package:islami_app/modules/layout/time/time_view.dart';
 import '../../core/constatns/assets.dart';
 
 class LayoutView extends StatefulWidget {
-  static const String routName = '/layout';
+  static const String routeName = '/layout';
 
   const LayoutView({super.key});
 

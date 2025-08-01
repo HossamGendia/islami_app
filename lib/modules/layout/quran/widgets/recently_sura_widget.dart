@@ -28,7 +28,7 @@ class RecentlySuraWidget extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: (){
-                  Navigator.pushNamed(context, QuranDetailsView.routName, arguments: suraDataModel[index]);
+                  Navigator.pushNamed(context, QuranDetailsView.routeName, arguments: suraDataModel[index]);
                 },
                 child: RecentlyItemWidget(
                   suraDataModel: suraDataModel[index],

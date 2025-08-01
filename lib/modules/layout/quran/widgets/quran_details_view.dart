@@ -5,7 +5,7 @@ import 'package:islami_app/core/constatns/colors_pallete.dart';
 import 'package:islami_app/models/sura_data_model.dart';
 
 class QuranDetailsView extends StatefulWidget {
-  static const String routName = 'quran_details_view';
+  static const String routeName = 'quran_details_view';
 
   ///addComment
 
