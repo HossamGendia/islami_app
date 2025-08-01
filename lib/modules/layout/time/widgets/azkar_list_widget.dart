@@ -23,11 +23,13 @@ class AzkarListWidget extends StatelessWidget {
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-          color: Colors.black,
             color: ColorsPallete.primaryColor,
-            width: 2,
-          )
+            border: Border.all(
+              color: Colors.white, // أو أي لون تحبه
+              width: 2,
+            ),
           ),
+
           child: Column(
             children: [
             Expanded(child: Image.asset(azkarData[index].zikrImage,fit: BoxFit.cover,)),
